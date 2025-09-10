@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@utility label {
+    @apply flex flex-col w-full;
+}
+
+@utility input {
+    @apply border-1 border-gray-200 p-2 rounded-md transition-all duration-300 ;
+
+    &:focus {
+        @apply outline-none border-blue-500
+    }
+}
