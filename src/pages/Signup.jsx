@@ -19,12 +19,10 @@ export const Signup = () => {
         });
 
         if (error) {
-            alert('Error al registrarse: ' + error.message);
             setLoading(false);
             return;
         }
 
-        alert('Registro exitoso! Por favor, verifica tu correo.');
         setEmail('');
         setPassword('');
         setLoading(false);

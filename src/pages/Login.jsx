@@ -17,12 +17,10 @@ export const Login = () => {
         });
 
         if (error) {
-            alert('Error al iniciar sesión: ' + error.message);
             setLoading(false);
             return;
         }
 
-        alert('Inicio de sesión exitoso!');
         setEmail('');
         setPassword('');
         setLoading(false);
