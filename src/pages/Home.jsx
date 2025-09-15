@@ -1,4 +1,5 @@
 import { AddRecourse } from "@/components/AddRecourse";
+import { UserProfile } from "@/components/UserProfile";
 import supabase from "@/lib/supabase";
 import { useEffect, useState } from "react";
 
@@ -6,6 +7,7 @@ import { useEffect, useState } from "react";
 export const Home = () => {
     const [recourses, setRecourses] = useState([]);
     const [isVisible, setIsVisible] = useState(false);
+    const [userVisible, setUserVisible] = useState(false);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -77,7 +79,13 @@ export const Home = () => {
     return (
         <div className="w-full min-h-screen mx-auto flex justify-center bg-gray-200">
             <div className="max-w-3xl w-full py-10 px-5 md:px-0">
-                <h1 className="text-3xl font-medium">Tus recursos</h1>
+                <div className="flex justify-between items-center">
+                    <h1 className="text-3xl font-medium">Tus recursos</h1>
+                    <i
+                        onClick={() => setUserVisible(true)}
+                        className='bx bxs-user bg-gray-100 hover:bg-gray-300 cursor-pointer p-3 text-xl flex justify-center items-center rounded-full transition-all duration-300'
+                    />
+                </div>
                 { loading ? (
                     <div className="flex flex-col items-center justify-center h-full">
                         <h2 className="text-2xl">Cargando recursos...</h2>
@@ -128,6 +136,10 @@ export const Home = () => {
                 >
                     <i className="bx bx-plus text-xl" />
                 </button>
+            )}
+
+            { userVisible && (
+                <UserProfile setUserVisible={setUserVisible} />
             )}
 
         </div>
