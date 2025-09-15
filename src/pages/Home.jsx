@@ -83,7 +83,7 @@ export const Home = () => {
                     <h1 className="text-3xl font-medium">Tus recursos</h1>
                     <i
                         onClick={() => setUserVisible(true)}
-                        className='bx bxs-user bg-gray-100 hover:bg-gray-300 cursor-pointer p-3 text-xl flex justify-center items-center rounded-full transition-all duration-300'
+                        className='bx bxs-user border-2 border-gray-300 bg-gray-100 hover:bg-gray-300 cursor-pointer p-3 text-xl flex justify-center items-center rounded-full transition-all duration-300'
                     />
                 </div>
                 { loading ? (
@@ -102,7 +102,10 @@ export const Home = () => {
                             {
                                 recourses.map((recourse, key) => (
                                     <li key={key} className="bg-[#fafafa] py-5 px-8 rounded-md shadow-sm hover:shadow-md transition-all duration-300 flex justify-between items-center">
-                                        <h3 className="text-lg md:text-xl lg:text-2xl font-semibold">{recourse.title}</h3>
+                                        <div className="flex justify-center items-center gap-4">
+                                            <h3 className="text-lg md:text-xl lg:text-2xl font-semibold">{recourse.title}</h3>
+                                            <p className="text-gray-400 text-xs">{recourse.content}</p>
+                                        </div>
                                         <div className="flex gap-2 h-full">
                                             <a
                                                 href={recourse.content} 
