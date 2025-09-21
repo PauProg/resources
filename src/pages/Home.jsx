@@ -104,7 +104,6 @@ export const Home = () => {
                                     <li key={key} className="bg-[#fafafa] py-5 px-8 rounded-md shadow-sm hover:shadow-md transition-all duration-300 flex justify-between items-center">
                                         <div className="flex justify-center items-center gap-4">
                                             <h3 className="text-lg md:text-xl lg:text-2xl font-semibold">{recourse.title}</h3>
-                                            <p className="text-gray-400 text-xs">{recourse.content}</p>
                                         </div>
                                         <div className="flex gap-2 h-full">
                                             <a
