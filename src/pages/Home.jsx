@@ -1,4 +1,5 @@
 import { AddRecourse } from "@/components/AddRecourse";
+import { EditRecourse } from "@/components/EditRecourse";
 import { UserProfile } from "@/components/UserProfile";
 import supabase from "@/lib/supabase";
 import { useEffect, useState } from "react";
@@ -7,7 +8,9 @@ import { useEffect, useState } from "react";
 export const Home = () => {
     const [recourses, setRecourses] = useState([]);
     const [isVisible, setIsVisible] = useState(false);
+    const [editVisible, setEditVisible] = useState(false);
     const [userVisible, setUserVisible] = useState(false);
+    const [selectedRecourse, setSelectedRecourse] = useState(null);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -76,6 +79,11 @@ export const Home = () => {
         setLoading(false);
     }
 
+    const edit = (recourse) => {
+        setEditVisible(true);
+        setSelectedRecourse(recourse);
+    }
+
     return (
         <div className="w-full min-h-screen mx-auto flex justify-center bg-gray-200">
             <div className="max-w-3xl w-full py-10 px-5 md:px-0">
@@ -103,11 +111,16 @@ export const Home = () => {
                                 recourses.map((recourse, key) => (
                                     <li key={key} className="bg-[#fafafa] py-5 px-8 rounded-md shadow-sm hover:shadow-md transition-all duration-300 flex justify-between items-center">
                                         <div className="flex justify-center items-center gap-4">
-                                            <h3 className="text-lg md:text-xl lg:text-2xl font-semibold">{recourse.title}</h3>
+                                            <a
+                                                onClick={() => edit(recourse)}
+                                                className="text-lg md:text-xl lg:text-2xl font-semibold cursor-pointer hover:text-gray-600 transition-all duration-300"
+                                            >
+                                                {recourse.title}
+                                            </a>
                                         </div>
                                         <div className="flex gap-2 h-full">
                                             <a
-                                                href={recourse.content} 
+                                                href={recourse.content}
                                                 target="_blank"
                                                 className="cursor-pointer text-white bg-blue-600 rounded-md px-3 py-1 hover:bg-blue-700 transition-all duration-300"
                                             >
@@ -142,6 +155,10 @@ export const Home = () => {
 
             { userVisible && (
                 <UserProfile setUserVisible={setUserVisible} />
+            )}
+
+            { editVisible && (
+                <EditRecourse recourse={selectedRecourse} setEditVisible={setEditVisible} />
             )}
 
         </div>
